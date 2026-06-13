@@ -25,7 +25,7 @@ echo "outfile => $LUACHECK_CAPTURE_OUTFILE"
 
 if [[ ! -z "$4" ]]; then
   echo "exec => luacheck $LUACHECK_ARGS $LUACHECK_PATH 2>>$LUACHECK_CAPTURE_OUTFILE"
-  luacheck --operators "+=" $LUACHECK_ARGS $LUACHECK_PATH >"$LUACHECK_CAPTURE_OUTFILE" 2>&1 || true
+  luacheck --operators "+=" $LUACHECK_ARGS $LUACHECK_PATH >"$LUACHECK_CAPTURE_OUTFILE" 2>/dev/null || true
 
   echo "exec => luacheck $LUACHECK_ARGS --formatter default $LUACHECK_PATH"
   luacheck --operators "+=" $LUACHECK_ARGS --formatter default $LUACHECK_PATH || EXIT_CODE=$?
