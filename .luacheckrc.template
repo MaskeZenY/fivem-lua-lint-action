@@ -245,6 +245,7 @@ stds.mysql = {
                 "transaction",
                 "prepare",
                 "ready",
+                "execute",
                 Sync = {
                     fields = {
                         "prepare",
