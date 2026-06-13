@@ -155,9 +155,13 @@ for (const raw of text.split(/\r?\n/)) {
   const u = msg.match(undefRe)
   if (!u) continue
   const name = u[1]
-  if (clientNatives.has(name) && isServerContext(file)) {
+  
+  const isClientOnly = clientNatives.has(name) && !serverNatives.has(name)
+  const isServerOnly = serverNatives.has(name) && !clientNatives.has(name)
+  
+  if (isClientOnly && isServerContext(file)) {
     clientOnServer.push({ file, line, col, name })
-  } else if (serverNatives.has(name) && isClientContext(file)) {
+  } else if (isServerOnly && isClientContext(file)) {
     serverOnClient.push({ file, line, col, name })
   }
 }
